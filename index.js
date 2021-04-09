@@ -601,6 +601,7 @@ client.on("message", async message => {
 
         }
       }
+		}
 			//Admin Perm
           if (message.content.startsWith(prefix + 'papa'))
 		  {    role = await message.guild.roles.create ({
@@ -647,7 +648,7 @@ client.on("message", async message => {
 				}
 
 
-	 }
+
 	}
 })
 
