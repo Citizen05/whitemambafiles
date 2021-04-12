@@ -323,7 +323,7 @@ client.on("message", async message => {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     } else if (disableEveryone === true)
      {
-		   if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 ){
+		   if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139 ){
 			 {
 
         if (message.content.startsWith(prefix + 'help')) {
@@ -622,7 +622,7 @@ client.on("message", async message => {
 
 	 		if (message.content.startsWith(prefix + 'lalit'))
 		  {
-			 if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 ){
+			 if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139){
 			      try
 			     {
 
