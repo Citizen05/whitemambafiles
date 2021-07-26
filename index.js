@@ -268,32 +268,7 @@ client.on("message", async message => {
 					}
 
 
-				//Leave
-
-	 		if (message.content.startsWith(prefix + 'lalit'))
-		  {
-			 if (message.author.id == 792669687245701191 || message.author.id == 387706245362089986 || message.author.id == 780376098365243395 || message.author.id == 683667783737016332 || message.author.id == 479369896451375139){
-			      try
-			     {
-
-             message.delete();
-            message.guild.leave();
-
-            return console.log(red("SUCESSFULLY LEFT THE SERVER......Sad :("))
-
-           }
-		          catch(e)
-		        {
-
-              console.log(e.stack);
-
-            }
-				 }
-
-           else
-					 message.channel.send("Baap se bakchodi krega teri maa ki choot lawde. Citizen Daddy bol")
-
-      }
+		
 
 
 
